@@ -69,21 +69,20 @@ if(f.is_open()){
         }
 
 while(temp!=nullptr){
-        f<<"*"<<endl;
         if(temp->put==false){
     if(temp->borrowing==true){
-        f<<"The Book Has Been Borrowed"<<endl;//b
-f<<temp->n_borrowing<<", ";//name
-cout<<temp->phone<<", ";
+        f<<"The Book Has Been Borrowed"<<endl;
+f<<"Name Of Client : "<<temp->n_borrowing<<endl;
+cout<<"Phone Number : "<<temp->phone<<endl;
     }
-            f<<temp->title<<", ";
-            f<<temp->author<<", ";
-            f<<temp->ISBN<<", ";
-            f<<temp->gener<<", ";
-            f<<temp->av_status<<endl;
+            f<< "Title -> "<<temp->title<<endl;
+            f<<"Author -> "<<temp->author<<endl;
+            f<<"ISBN -> "<<temp->ISBN<<endl;
+            f<<"Genre -> "<<temp->gener<<endl;
+            f<<"Availability Status -> "<<temp->av_status<<endl;
             temp->put=true;
 
-
+    f<<"------------------------------"<<endl;
 
 
 }   temp=temp->next;
@@ -119,7 +118,7 @@ void Book_Record<t>::new_N()
 }
 template<class t>
 void Book_Record<t>::r_file(){
-/*fstream f;
+fstream f;
 f.open("Book.txt",ios::in);
 string line;
 if(f.is_open()){
@@ -129,46 +128,7 @@ while(getline(f,line)){
 }f.close();
 }else{
 cout<<"The File Can't Be Exist"<<endl;
-}*/
-fstream f;
-ifstream fin;
-fin.open("Book.txt");
-f.open("Book.txt",ios::in);
-string line;
-Node<t>*new_node;
-if(f.is_open()){
-
-while(getline(f,line)){
-
-if(line=="*"){
-      new_node=new Node<t>();
-      cout<<endl;
-}if (line=="The Book Has Been Borrowed"){
-new_node->borrowing=true;
-cout<<endl;
-}if(new_node->borrowing==true){
-getline(fin, new_node->n_borrowing, ",");
-getline(fin, new_node->phone, ",");
-getline(fin, new_node->title, ",");
-getline(fin, new_node->author, ",");
-getline(fin, new_node->ISBN, ",");
-getline(fin, new_node->gener, ",");
-getline(fin, new_node->av_status, "\n");
 }
-else{
-
-    getline(fin, new_node->title, ",");
-getline(fin, new_node->author, ",");
-getline(fin, new_node->ISBN, ",");
-getline(fin, new_node->gener, ",");
-getline(fin, new_node->av_status, "\n");
-}
-
-}f.close();
-}else{
-cout<<"The File Can't Be Exist"<<endl;
-}
-
 }
 template<class t>
 bool Book_Record<t>::isempty()
